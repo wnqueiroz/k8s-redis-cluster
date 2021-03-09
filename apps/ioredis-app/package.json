@@ -1,0 +1,24 @@
+{
+  "name": "ioredis-app",
+  "version": "1.0.0",
+  "author": {
+    "name": "William Queiroz",
+    "email": "wnqueiroz@outlook.com"
+  },
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start:prod": "node src/index.js",
+    "start:dev": "nodemon src/index.js",
+    "start:debug": "DEBUG=\"ioredis:*\" nodemon src/index.js"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "ioredis": "^4.23.0"
+  }
+}

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ioredis-app
+  labels:
+    app: ioredis-app
+spec:
+  selector:
+    matchLabels:
+      app: ioredis-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ioredis-app
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: ioredis-app
+          image: wnqueiroz/ioredis-app:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 256m
+              memory: 256Mi
+            limits:
+              cpu: 256m
+              memory: 256Mi
+          env:
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: ioredis-app
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ioredis-app
+                  key: REDIS_PORT
+            - name: DEBUG
+              value: ioredis:*
+          ports:
+            - containerPort: 8081
+              name: ioredis-app
